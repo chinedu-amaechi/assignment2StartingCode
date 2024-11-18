@@ -94,15 +94,12 @@ public class XMLParser {
 
     public static void main(String[] args) {
         if (args.length != 1) {
-            System.out.println("Usage: java -jar Parser.jar <file-path>");
+            System.out.println("Usage: java -jar Parser.jar [file-path]");
             return;
         }
 
         XMLParser parser = new XMLParser();
         parser.parseFile(args[0]);
-//           String testFilePath = "./src/res/sample1.xml";
-//           XMLParser parser = new XMLParser();
-//           parser.parseFile(testFilePath);
            
     }
 }
