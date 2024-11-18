@@ -21,23 +21,31 @@ public class XMLParser {
     }
 
     public void parseFile(String filePath) {
-        try (Scanner scanner = new Scanner(new File(filePath))) {
+        File file = new File(filePath);
+        System.out.println("Absolute file path: " + file.getAbsolutePath());
+        System.out.println("Parsing file: " + filePath);
+        
+        try
+            (Scanner scanner = new Scanner(file)) {
             int lineNum = 1;
             while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
+                String line = scanner.nextLine().trim();
                 parseLine(line, lineNum);
                 lineNum++;
             }
             checkRemainingTags();
             displayErrors();
-        } catch (FileNotFoundException e) {
+            
+        }
+        catch(FileNotFoundException e) {
             System.out.println("File not found: " + filePath);
         }
     }
 
+    
     private void parseLine(String line, int lineNum) {
-        // Simple regex for detecting tags
-        String tagPattern = "<(/?\\w+)>";
+        // Regex for detecting tags with optional attributes and self-closing tags
+        String tagPattern = "<(/?\\w+)([^>]*)?>";
 
         // Find and process tags within the line
         java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(tagPattern);
@@ -50,6 +58,8 @@ public class XMLParser {
     }
 
     private void processTag(String tag, int lineNum) {
+        tag = tag.replaceAll("[<>]", ""); // Remove angle brackets
+
         if (tag.startsWith("/")) { // Closing tag
             String closingTag = tag.substring(1);
             if (tagStack.isEmpty() || !tagStack.peek().equals(closingTag)) {
@@ -57,6 +67,8 @@ public class XMLParser {
             } else {
                 tagStack.pop(); // Pop matching opening tag
             }
+        } else if (tag.endsWith("/")) { // Self-closing tag
+            // Ignore self-closing tags for error tracking
         } else { // Opening tag
             tagStack.push(tag);
         }
@@ -69,22 +81,28 @@ public class XMLParser {
     }
 
     private void displayErrors() {
+        System.out.println("===================Error LOG============");
         if (errorQueue.isEmpty()) {
             System.out.println("No errors found.");
         } else {
-            System.out.println("XML Parsing Errors:");
             while (!errorQueue.isEmpty()) {
                 System.out.println(errorQueue.dequeue());
             }
         }
     }
 
+
     public static void main(String[] args) {
         if (args.length != 1) {
-            System.out.println("Usage: java XMLParser <file-path>");
+            System.out.println("Usage: java -jar Parser.jar <file-path>");
             return;
         }
+
         XMLParser parser = new XMLParser();
         parser.parseFile(args[0]);
+//           String testFilePath = "./src/res/sample1.xml";
+//           XMLParser parser = new XMLParser();
+//           parser.parseFile(testFilePath);
+           
     }
 }
