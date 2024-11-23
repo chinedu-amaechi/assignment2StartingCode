@@ -31,7 +31,6 @@ public class XMLParser {
      */
     public void parseFile(String filePath) {
         File file = new File(filePath);
-        System.out.println(); // Blank spacing on the console
 
         try (Scanner scanner = new Scanner(file)) {
             int lineNum = 1;
