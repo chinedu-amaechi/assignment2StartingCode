@@ -9,7 +9,7 @@ import java.util.Scanner;
 /**
  * XMLParser.java
  * 
- * @author Team3: Assignment 2 for CPRG304
+ * @author: Developed collaboratively by Team 3, CPRG304, Fall 2024.
  * 
  * Class Description:
  * This class reads an XML file, parses it to identify structural issues, 

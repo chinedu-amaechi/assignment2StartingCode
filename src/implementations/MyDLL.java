@@ -11,7 +11,7 @@ import java.util.NoSuchElementException;
  * This implementation supports standard list operations, 
  * including adding, removing, and retrieving elements, as well as iteration.
  *
- * @author Team3: Assignment 2 for CPRG304
+ * @author: Developed collaboratively by Team 3, CPRG304, Fall 2024.
  */
 public class MyDLL<E> implements ListADT<E> {
     private MyDLLNode<E> head; // First node in the list

@@ -10,7 +10,7 @@ import utilities.Iterator;
  * This queue supports dynamic resizing and follows FIFO (First-In-First-Out) ordering.
  *
  * @param <E> the type of elements stored in the queue
- * @author Team3: Assignment 2 for CPRG304
+ * @author: Developed collaboratively by Team 3, CPRG304, Fall 2024.
  */
 public class MyQueue<E> implements QueueADT<E> {
     private Node<E> head; // Reference to the first element in the queue

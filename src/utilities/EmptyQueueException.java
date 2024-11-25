@@ -3,7 +3,7 @@ package utilities;
 /**
  * Exception thrown when an operation is performed on an empty queue.
  * 
- * @author: Developed collaboratively by CPRG340: Team3.
+ * @Developed collaboratively by Team 3, CPRG304, Fall 2024.
  * 
  */
 public class EmptyQueueException extends RuntimeException {
