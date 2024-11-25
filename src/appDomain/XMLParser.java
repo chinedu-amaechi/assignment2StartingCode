@@ -165,7 +165,7 @@ public class XMLParser {
                         if (matched) {
                             while (!tempStack.isEmpty()) {
                                 String[] tempTag = tempStack.pop();
-                                errorQueue.enqueue(new String[] { "<" + tempTag[0] + ">", "Unclosed tag", tempTag[1] });
+                                errorQueue.enqueue(new String[] { "<" + tempTag[0] + ">", "Unclosed tag: Error ", tempTag[1] });
                             }
                         } else {
                             errorQueue.enqueue(new String[] { fullTag, "Error at ", String.valueOf(lineNum) });
