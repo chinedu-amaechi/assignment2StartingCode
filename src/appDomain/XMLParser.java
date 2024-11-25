@@ -9,7 +9,7 @@ import java.util.Scanner;
 /**
  * XMLParser.java
  * 
- * @author: Developed collaboratively by Team 3, CPRG304, Fall 2024.
+ * @author Developed collaboratively by Team 3, CPRG304, Fall 2024.
  * 
  * Class Description:
  * This class reads an XML file, parses it to identify structural issues, 
@@ -61,7 +61,7 @@ public class XMLParser {
     public static void displayErrors() {
         boolean noErrors = true;
 
-        System.out.println("=============Error LOG=============");
+        System.out.println("============== Error LOG ==============");
         System.out.println(); // Blank spacing on the console
 
         // Handle unmatched opening tags
@@ -78,7 +78,7 @@ public class XMLParser {
                 System.out.println(String.format("%s at line %s\n\t%s", error[1], error[2], error[0]));
             }
         } catch (EmptyQueueException e) {
-            e.printStackTrace();
+            System.out.println("Error: Queue is empty while displaying errors.");
         }
 
         if (noErrors) {
@@ -165,10 +165,10 @@ public class XMLParser {
                         if (matched) {
                             while (!tempStack.isEmpty()) {
                                 String[] tempTag = tempStack.pop();
-                                errorQueue.enqueue(new String[] { "<" + tempTag[0] + ">", "Unclosed tag: Error ", tempTag[1] });
+                                errorQueue.enqueue(new String[] { "<" + tempTag[0] + ">", "Error ", tempTag[1] });
                             }
                         } else {
-                            errorQueue.enqueue(new String[] { fullTag, "Error at ", String.valueOf(lineNum) });
+                            errorQueue.enqueue(new String[] { fullTag, "Error ", String.valueOf(lineNum) });
                             while (!tempStack.isEmpty()) {
                                 tagStack.push(tempStack.pop());
                             }
@@ -191,6 +191,7 @@ public class XMLParser {
      * @param args Command-line arguments. The first argument must be the XML file path.
      */
     public static void main(String[] args) {
+        System.out.println(); // Blank spacing on the console
         if (args.length != 1) {
             System.out.println("Usage: java -jar XMLParser.jar <file-path>");
             return;

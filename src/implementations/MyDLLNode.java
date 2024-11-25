@@ -7,7 +7,7 @@ package implementations;
  * the previous and the next nodes in the list.
  *
  * @param <E> The type of data stored in the node.
- * @author: Developed collaboratively by Team 3, CPRG304, Fall 2024.
+ * @author Developed collaboratively by Team 3, CPRG304, Fall 2024.
  */
 public class MyDLLNode<E> {
     E data;             // Data stored in this node

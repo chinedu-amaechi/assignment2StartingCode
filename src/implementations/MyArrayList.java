@@ -22,7 +22,7 @@ import java.util.NoSuchElementException;
  * are not allowed and will result in a NullPointerException.
  *
  * @param <E> The type of elements stored in this list.
- * @author: Developed collaboratively by Team 3, CPRG304, Fall 2024.
+ * @author Developed collaboratively by Team 3, CPRG304, Fall 2024.
  */
 public class MyArrayList<E> implements ListADT<E> {
     private E[] elements; // Array to store elements
