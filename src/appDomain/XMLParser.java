@@ -111,7 +111,7 @@ public class XMLParser {
             int openTagEnd = line.indexOf('>', openTagStart);
 
             if (openTagStart == -1 && openTagEnd != -1) {
-                errorQueue.enqueue(new String[] { line, "Invalid closing tag without opening '<'", String.valueOf(lineNum) });
+                errorQueue.enqueue(new String[] { line, "Invalid closing tag ", String.valueOf(lineNum) });
             }
 
             int malformedEnd = line.indexOf('>', currentIndex);

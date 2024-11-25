@@ -6,26 +6,44 @@ import java.util.NoSuchElementException;
 import utilities.Iterator;
 
 /**
- * A Queue implementation using a custom doubly linked list (DLL).
+ * A custom implementation of a queue using a doubly linked list (DLL).
+ * This queue supports dynamic resizing and follows FIFO (First-In-First-Out) ordering.
  *
- * @param <E> the type of elements held in this queue
+ * @param <E> the type of elements stored in the queue
+ * @author Team3: Assignment 2 for CPRG304
  */
 public class MyQueue<E> implements QueueADT<E> {
-    private Node<E> head;
-    private Node<E> tail;
-    private int size;
+    private Node<E> head; // Reference to the first element in the queue
+    private Node<E> tail; // Reference to the last element in the queue
+    private int size;     // The current number of elements in the queue
 
-    // Inner class for doubly linked list node
+    
+    
+    /**
+     * A node in the doubly linked list that represents the queue.
+     * Each node holds a reference to its data, the next node, and the previous node.
+     */
     private static class Node<E> {
-        E data;
-        Node<E> next;
-        Node<E> prev;
+        E data;       // The value stored in this node
+        Node<E> next; // Reference to the next node in the list
+        Node<E> prev; // Reference to the previous node in the list
 
+        
+        
+        /**
+         * Creates a new node with the given data.
+         *
+         * @param data the value to store in this node
+         */
         Node(E data) {
             this.data = data;
         }
     }
 
+    
+    /**
+     * Initializes an empty queue.
+     */
     public MyQueue() {
         this.head = null;
         this.tail = null;
@@ -47,6 +65,7 @@ public class MyQueue<E> implements QueueADT<E> {
         size++;
     }
 
+    
     @Override
     public E dequeue() throws EmptyQueueException {
         if (isEmpty()) throw new EmptyQueueException("Queue is empty");
@@ -62,12 +81,14 @@ public class MyQueue<E> implements QueueADT<E> {
         return frontData;
     }
 
+    
     @Override
     public E peek() throws EmptyQueueException {
         if (isEmpty()) throw new EmptyQueueException("Queue is empty");
         return head.data; // Return the data at the front (head) without removing it
     }
 
+    
     @Override
     public void dequeueAll() {
         head = null;
@@ -75,16 +96,19 @@ public class MyQueue<E> implements QueueADT<E> {
         size = 0;
     }
 
+    
     @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
+    
     @Override
     public int size() {
         return size;
     }
 
+    
     @Override
     public boolean contains(E toFind) throws NullPointerException {
         if (toFind == null) throw new NullPointerException("Cannot search for null element in queue");
@@ -97,6 +121,7 @@ public class MyQueue<E> implements QueueADT<E> {
         return false;
     }
 
+    
     @Override
     public int search(E toFind) {
         if (toFind == null) throw new NullPointerException("Cannot search for null element in queue");
@@ -111,6 +136,7 @@ public class MyQueue<E> implements QueueADT<E> {
         return -1;
     }
 
+    
     @Override
     public Object[] toArray() {
         Object[] array = new Object[size];
@@ -123,6 +149,7 @@ public class MyQueue<E> implements QueueADT<E> {
         return array;
     }
 
+    
     @Override
     public E[] toArray(E[] holder) throws NullPointerException {
         if (holder == null) throw new NullPointerException("Holder array cannot be null");
@@ -130,6 +157,7 @@ public class MyQueue<E> implements QueueADT<E> {
         if (holder.length < size) {
             holder = (E[]) new Object[size];
         }
+ 
         
         Node<E> current = head;
         int index = 0;
@@ -144,6 +172,7 @@ public class MyQueue<E> implements QueueADT<E> {
         return holder;
     }
 
+    
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
@@ -164,11 +193,13 @@ public class MyQueue<E> implements QueueADT<E> {
         };
     }
 
+    
     @Override
     public boolean isFull() {
         return false; // This queue dynamically expands as needed
     }
 
+    
     @Override
     public boolean equals(QueueADT<E> that) {
         if (this.size() != that.size()) return false;
